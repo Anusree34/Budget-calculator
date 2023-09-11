@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courgette&family=EB+Garamond:ital,wght@1,700&family=Lilita+One&family=Mulish:wght@900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <h2 style="color: rgb(72, 9, 132);font-family: 'Courgette', cursive;margin-left: 15%;font-size: 50px;"> FamBuddy</h2>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Expense</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Income</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">History</a>
+                  </li>
+                  <li class="nav-item"><a href="#" class="nav-link"><button class="btn btn-danger" onclick="logout()">Logout</button></a></li>
+                </ul>
+            </div>
+        </div>   
+    </nav>
+    <div class="container-fluid">
+    <div style="background-image: linear-gradient(135deg, #eeac89 10%, #f29238 100%);" id="rolling"><marquee behavior="" direction="right" ></marquee></div>
+    </div>
+    <div class="container-fluid" style="background-color: #f1f1f1;;background-image: none;padding: 20px;padding-left: 80px;">
+        <h3 id="text">Hai user,Track your spending...</h3>
+        <div class="row" style="height: 300px;">
+
+            <div class="col-lg-4 col-sm-3" style="background-color: rgb(255, 255, 255);margin: 10px;text-align: center;border-radius: 20%;">
+            <div style="margin: 10px;margin-top: 15%;"><input list="des" class="form-control" type="text" name="" id="desc" placeholder="Description">
+              <datalist id="des">
+                <option value="Salary"></option>
+                <option value="Other"></option>
+            </datalist>
+            </div>
+           <div style="margin: 10px;"><input class="form-control" type="text" name="" id="income" placeholder="Enter income"></div>
+           <button class="btn btn-lg" style="background-color: rgb(56, 213, 56);" onclick="add()">Add Income</button>
+            </div>
+
+            <div class="col-lg-3 col-sm-3" style="background-color: #f1f1f1f7;;margin: 10px;border-radius: 20%;">
+              <div id="savebox"><h3 style=" color :red" id="bal"> Your Savings is : <p style="padding-top:10px" id="result">Rs. null/-</p> </h3></div>
+            </div>
+
+            <div class="col-lg-4 col-sm-3" style="background-color: rgb(255, 255, 255);margin: 10px;text-align: center;border-radius: 20%;">
+
+            <div style="margin: 10px;margin-top: 15%;">
+            <input list="de" class="form-control" type="text" name="" id="descri" placeholder="Description">
+            <datalist id="de">
+              <option value="Room rent"></option>
+              <option value="Loan"></option>
+              <option value="Food"></option>
+              <option value="Others"></option>
+          </datalist>
+            <div style="margin: 10px;"><input class="form-control" type="text" name="" id="exp" placeholder="Enter expense"></div>
+            <button class="btn btn-lg" style="background-color: rgb(232, 173, 77);" onclick="expense()">Add Expense</button>
+       </div>
+    
+        <br><br><br>
+      </div>
+    </div>
+
+   
+    <br><br><br>
+    <div class="container-fluid" id="table">
+      <div class="row">
+        <div class="col-lg-6">
+          <table>
+            <thead>
+            <tr>
+              <th colspan="3" class="border border-2" style="background-color: #eeac89;">Income</th>
+            </tr>
+            <tr>
+              <th class="border border-2">Type</td>
+              <th class="border border-2">Amount</td>
+              <th class="border border-2">Balance</td>
+            </tr>
+            </thead>
+            <tbody id="tbody"> </tbody>
+          </table>
+        </div>
+        <div class="col-lg-6 ">
+          <table>
+            <thead>
+            <tr>
+              <th colspan="3" class="border border-2" style="background-color: #eeac89;">Expense</th>
+            </tr>
+            <tr>
+              <th class="border border-2">Type</td>
+              <th class="border border-2">Amount</td>
+              <th class="border border-2">Balance</td>
+            </tr>
+            </thead>
+            <tbody id="tbody2"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="container-fluid" style="background-image: none;">
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="">FamBuddy.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</div>
+
+<script src="./script.js">
+  </script>
+
+</body>
+</html>
